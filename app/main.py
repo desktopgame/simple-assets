@@ -51,6 +51,15 @@ def gen_filled_circle(width: int, height: int, filename: str, color=None):
     )
 
 
+def gen_filled_triangle(width: int, height: int, filename: str, color=None):
+    gen_image(
+        width, height,
+        filename,
+        lambda draw:
+            draw.polygon([(0, height), (width/2, 0), (width, height)], fill = color)
+    )
+
+
 def generate(width: int, height: int):
     styles = [
         style.Style((255, 0, 0), 'red'),
@@ -76,6 +85,9 @@ def generate(width: int, height: int):
         gen_filled_circle(
             width, height,
             f'dist/fill_circle_{s.filename}.png', s.color)
+        gen_filled_triangle(
+            width, height,
+            f'dist/fill_triangle_{s.filename}.png', s.color)
 
 
 def main():
