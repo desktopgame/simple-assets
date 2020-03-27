@@ -1,5 +1,7 @@
 from PIL import Image, ImageDraw
 import style
+import zipfile
+import glob
 
 #
 # draw functions
@@ -95,6 +97,11 @@ def main():
     generate(64, 64)
     generate(96, 96)
     generate(128, 128)
+    c = zipfile.ZIP_DEFLATED
+    with zipfile.ZipFile('simple-assets.zip', 'w', compression=c) as new_zip:
+        files = glob.glob("dist/*.png")
+        for file in files:
+            new_zip.write(file)
 
 
 if __name__ == "__main__":
