@@ -62,7 +62,7 @@ def gen_filled_triangle(width: int, height: int, filename: str, color=None):
     )
 
 
-def generate(width: int, height: int):
+def generate(dir: str, width: int, height: int):
     styles = [
         style.Style((255, 0, 0), 'red'),
         style.Style((0, 255, 0), 'green'),
@@ -80,27 +80,28 @@ def generate(width: int, height: int):
     for s in styles:
         gen_filled_rect(
             width, height,
-            f'dist/fill_rect_{s.filename}.png', s.color)
+            f'{dir}/fill_rect_{s.filename}.png', s.color)
         gen_line_rect(
             width, height,
-            f'dist/line_rect_{s.filename}.png', s.color)
+            f'{dir}/line_rect_{s.filename}.png', s.color)
         gen_filled_circle(
             width, height,
-            f'dist/fill_circle_{s.filename}.png', s.color)
+            f'{dir}/fill_circle_{s.filename}.png', s.color)
         gen_filled_triangle(
             width, height,
-            f'dist/fill_triangle_{s.filename}.png', s.color)
+            f'{dir}/fill_triangle_{s.filename}.png', s.color)
 
 
 def main():
-    generate(32, 32)
-    generate(64, 64)
-    generate(96, 96)
-    generate(128, 128)
+    generate('dist/32', 32, 32)
+    generate('dist/64', 64, 64)
+    generate('dist/96', 96, 96)
+    generate('dist/128', 128, 128)
     c = zipfile.ZIP_DEFLATED
     with zipfile.ZipFile('simple-assets.zip', 'w', compression=c) as new_zip:
-        files = glob.glob("dist/*.png")
+        files = glob.glob('dist/**/*.png', recursive=True)
         for file in files:
+            print(file)
             new_zip.write(file)
 
 
