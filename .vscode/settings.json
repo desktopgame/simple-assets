@@ -4,4 +4,5 @@
     "python.linting.lintOnSave": true,
     "python.formatting.provider": "autopep8",
     "python.jediEnabled": true,
+    "python.languageServer": "Jedi",
 }

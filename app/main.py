@@ -75,6 +75,9 @@ def generate(dir: str, width: int, height: int):
         style.Style((54, 176, 131), 'cobalt_green'),
         style.Style((40, 82, 148), 'supream_blue'),
         style.Style((28, 80, 147), 'russian_blue'),
+        style.Style((0, 0, 0), 'black'),
+        style.Style((255, 255, 255), 'white'),
+        style.Style((128, 128, 128), 'gray'),
     ]
     s: style.Style
     for s in styles:
